@@ -1,90 +1,82 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { Container, Row, Card, Button } from 'react-bootstrap'
+import { FormEvent, useState } from 'react'
+import { Container, Row, Button, Form, Col } from 'react-bootstrap'
 
 const Home: NextPage = () => {
+  const [validated, setValidated] = useState(false)
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const form = event.currentTarget
+    if (!form.checkValidity()) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+    setValidated(true)
+  }
+
   return (
-    <Container className="md-container">
+    <Container className="container">
       <Head>
         <title>ReactJS with react-bootstrap</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container>
-        <h1>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-        <p>
-          Get started by editing <code>pages/index.js</code>
-        </p>
-        <Container>
-          <Row className="justify-content-md-between">
-            <Card className="sml-card">
-              <Card.Body>
-                <Card.Title>Documentation</Card.Title>
-                <Card.Text>
-                  Find in-depth information about Next.js features and API.
-                </Card.Text>
-                <Button variant="primary" href="https://nextjs.org/docs">
-                  More &rarr;
-                </Button>
-              </Card.Body>
-            </Card>
-            <Card className="sml-card">
-              <Card.Body>
-                <Card.Title>Learn</Card.Title>
-                <Card.Text>
-                  Learn about Next.js in an interactive course with quizzes!
-                </Card.Text>
-                <Button variant="primary" href="https://nextjs.org/learn">
-                  More &rarr;
-                </Button>
-              </Card.Body>
-            </Card>
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Form.Group controlId="yourname" className="mb-3">
+          <Row className="justify-content-center">
+            <Col md="2">
+              <Form.Label>名前</Form.Label>
+            </Col>
+            <Col md="6">
+              <Form.Control type="text" placeholder="Enter name" required />
+              <Form.Control.Feedback type="invalid">
+                名前を入力してください
+              </Form.Control.Feedback>
+            </Col>
           </Row>
-          <Row className="justify-content-md-between">
-            <Card className="sml-card">
-              <Card.Body>
-                <Card.Title>Examples</Card.Title>
-                <Card.Text>
-                  Discover and deploy boilerplate example Next.js projects.
-                </Card.Text>
-                <Button
-                  variant="primary"
-                  href="https://github.com/vercel/next.js/tree/master/examples"
-                >
-                  More &rarr;
-                </Button>
-              </Card.Body>
-            </Card>
-            <Card className="sml-card">
-              <Card.Body>
-                <Card.Title>Deploy</Card.Title>
-                <Card.Text>
-                  Instantly deploy your Next.js site to a public URL with
-                  Vercel.
-                </Card.Text>
-                <Button
-                  variant="primary"
-                  href="https://vercel.com/new?utm_source=github&utm_medium=example&utm_campaign=next-example"
-                >
-                  More &rarr;
-                </Button>
-              </Card.Body>
-            </Card>
-          </Row>
-        </Container>
-      </Container>
-
-      <footer className="cntr-footer">
-        <a
-          href="https://vercel.com?filter=next.js&utm_source=github&utm_medium=example&utm_campaign=next-example"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="sml-logo" />
-        </a>
-      </footer>
+        </Form.Group>
+        <Row className="justify-content-center mb-3">
+          <Col md="4">
+            <Form.Group controlId="number1">
+              <Row>
+                <Col>
+                  <Form.Label>数字1</Form.Label>
+                </Col>
+                <Col>
+                  <Form.Control
+                    type="number"
+                    placeholder="Enter number1"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    数字を入力してください
+                  </Form.Control.Feedback>
+                </Col>
+              </Row>
+            </Form.Group>
+          </Col>
+          <Col md="4">
+            <Form.Group controlId="number2">
+              <Row>
+                <Col>
+                  <Form.Label>数字2</Form.Label>
+                </Col>
+                <Col>
+                  <Form.Control
+                    type="number"
+                    placeholder="Enter number2"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    数字を入力してください
+                  </Form.Control.Feedback>
+                </Col>
+              </Row>
+            </Form.Group>
+          </Col>
+        </Row>
+        <Button type="submit">送信</Button>
+      </Form>
     </Container>
   )
 }
