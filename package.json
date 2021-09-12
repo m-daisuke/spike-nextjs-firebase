@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "next src/",
+    "build": "next build src/",
+    "start": "next start src/",
     "lint": "next lint",
     "format": "prettier --write ."
   },
   "dependencies": {
     "bootstrap": "^5.1.0",
+    "dotenv": "^10.0.0",
     "next": "11.1.2",
     "react": "17.0.2",
     "react-bootstrap": "^1.6.1",
