@@ -1,0 +1,20 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "nextjsFunc"
+      }
+    ]
+  },
+  "functions": {
+    "source": ".",
+    "predeploy": [
+      "yarn --prefix \"$PROJECT_DIR\" install",
+      "yarn --prefix \"$PROJECT_DIR\" run build"
+    ],
+    "runtime": "nodejs16"
+  }
+}

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
 import { Container, Row, Button, Form, Col } from 'react-bootstrap'
 import { UserInputs } from '../lib/types'
+import { getTests, setTests } from '../lib/firebase'
 
 const Home: NextPage = () => {
   const [validated, setValidated] = useState(false)
@@ -25,6 +26,8 @@ const Home: NextPage = () => {
     event.stopPropagation()
     const form = event.currentTarget
     if (form.checkValidity()) {
+      console.log(await getTests())
+      await setTests(state)
       const response = await fetch('api/calc', {
         method: 'POST',
         mode: 'cors',
@@ -34,8 +37,13 @@ const Home: NextPage = () => {
         },
         body: JSON.stringify(state),
       })
-      // console.log(await response.json())
-      router.push('/result')
+      const resJson = await response.json()
+      if ('answer' in (await resJson)) {
+        router.push({
+          pathname: '/result',
+          query: { answer: resJson.answer },
+        })
+      }
     }
   }
 

@@ -2,16 +2,21 @@
   "name": "spike-nextjs-firebase",
   "version": "0.1.0",
   "private": true,
+  "main": "firebaseFunctions.js",
   "scripts": {
     "dev": "next src/",
     "build": "next build src/",
     "start": "next start src/",
+    "serve": "yarn build && firebase emulators:start --only functions,hosting",
     "lint": "next lint",
     "format": "prettier --write ."
   },
   "dependencies": {
     "bootstrap": "^5.1.0",
     "dotenv": "^10.0.0",
+    "firebase": "^9.0.2",
+    "firebase-admin": "^9.11.1",
+    "firebase-functions": "^3.15.5",
     "next": "11.1.2",
     "react": "17.0.2",
     "react-bootstrap": "^1.6.1",
