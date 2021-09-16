@@ -2,16 +2,26 @@
   "name": "spike-nextjs-firebase",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "14"
+  },
+  "workspaces": [
+    "functions"
+  ],
   "scripts": {
     "dev": "next src/",
     "build": "next build src/",
     "start": "next start src/",
+    "start:static": "yarn build && yarn export && serve ./out",
+    "serve": "firebase emulators:start --only functions,hosting",
+    "export": "next export",
     "lint": "next lint",
     "format": "prettier --write ."
   },
   "dependencies": {
     "bootstrap": "^5.1.0",
     "dotenv": "^10.0.0",
+    "firebase-functions": "^3.15.6",
     "next": "11.1.2",
     "react": "17.0.2",
     "react-bootstrap": "^1.6.1",
@@ -23,6 +33,7 @@
     "eslint-config-next": "11.1.2",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.3.2",
+    "serve": "^12.0.1",
     "typescript": "4.4.2"
   }
 }
