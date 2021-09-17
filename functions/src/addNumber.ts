@@ -10,7 +10,7 @@ export const addNumber = functions
       if ('number1' in req.body && 'number2' in req.body) {
         const userInputs = req.body
         try {
-          const answer = Number(userInputs.number1) * Number(userInputs.number2)
+          const answer = Number(userInputs.number1) + Number(userInputs.number2)
           res.status(200).json({ answer: answer })
           functions.logger.info(`The answer is ${answer}`)
         } catch (e) {
