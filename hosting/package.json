@@ -9,7 +9,7 @@
     "dev": "next src/",
     "build": "next build src/ && next export",
     "start": "yarn build && serve ./out",
-    "serve": "firebase emulators:start --only hosting",
+    "serve": "yarn build && firebase emulators:start --only hosting",
     "lint": "next lint",
     "format": "prettier --write ."
   },
