@@ -7,11 +7,9 @@
   },
   "scripts": {
     "dev": "next src/",
-    "build": "next build src/",
-    "start": "next start src/",
-    "start:static": "yarn build && yarn export && serve ./out",
+    "build": "next build src/ && next export",
+    "start": "yarn build && serve ./out",
     "serve": "firebase emulators:start --only hosting",
-    "export": "next export",
     "lint": "next lint",
     "format": "prettier --write ."
   },
