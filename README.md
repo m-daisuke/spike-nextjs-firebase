@@ -61,6 +61,7 @@ functions と hosting では ts ファイル内で`import { example } from "comm
 共通で利用するものでなくてもここに全てまとめてしまう形にしてしまっても良い
 
 1. `yarn workspace common build`で ts ファイルをコンパイル
+
    common 下のソースコードをいじったら必ず上記のコマンドを実行すること
 
 ## 本リポジトリの利用方法
