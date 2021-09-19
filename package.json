@@ -11,7 +11,8 @@
     "hosting"
   ],
   "scripts": {
-    "build": "yarn workspace functions build && yarn workspace hosting build",
+    "build": "yarn workspace common build && yarn workspace functions build && yarn workspace hosting build",
+    "build:prod": "yarn workspace common build && yarn workspace functions build:prod && yarn workspace hosting build",
     "serve": "firebase emulators:start --only functions,hosting",
     "lint": "yarn workspace common lint && yarn workspace functions lint && yarn workspace hosting lint",
     "format": "yarn workspace common format && yarn workspace functions format && yarn workspace hosting format"
