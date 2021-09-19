@@ -25,19 +25,15 @@ const Home: NextPage = () => {
     event.stopPropagation()
     const form = event.currentTarget
     if (form.checkValidity()) {
-      const response = await fetch(
-        'http://localhost:5001/nextjs-firebase-sample-8d2aa/asia-northeast1' +
-          '/addNumber',
-        {
-          method: 'POST',
-          mode: 'cors',
-          cache: 'no-cache',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(state),
-        }
-      )
+      const response = await fetch(process.env.API_URL + '/addNumber', {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(state),
+      })
       const resJson = await response.json()
       if ('answer' in (await resJson)) {
         router.push({
