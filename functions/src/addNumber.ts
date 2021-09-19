@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions'
-import * as corsLib from 'cors'
+import corsLib from 'cors'
 
 export const addNumber = functions
   .region('asia-northeast1')
