@@ -1,3 +1,1 @@
-import { addNumber } from './addNumber'
-
-export { addNumber }
+export * from './addNumber'

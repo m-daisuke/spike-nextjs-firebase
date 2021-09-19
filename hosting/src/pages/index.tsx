@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
 import { Container, Row, Button, Form, Col } from 'react-bootstrap'
-import { UserInputs } from '../lib/types'
+import { UserInputs } from 'common'
 
 const Home: NextPage = () => {
   const [validated, setValidated] = useState(false)
