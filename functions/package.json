@@ -9,7 +9,8 @@
   "scripts": {
     "build": "tsc",
     "serve": "yarn build && firebase emulators:start --only functions",
-    "lint": "eslint --ext .js,.ts ."
+    "lint": "eslint --ext .js,.ts .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "cors": "^2.8.5",

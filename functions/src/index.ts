@@ -1,1 +1,1 @@
-export * from "./addNumber";
+export * from './addNumber'
