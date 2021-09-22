@@ -11,12 +11,12 @@
     "hosting"
   ],
   "scripts": {
-    "build:dev": "yarn workspace common build && yarn workspace functions build && yarn workspace hosting build:dev",
-    "build:prod": "yarn workspace common build && yarn workspace functions build:prod && yarn workspace hosting build:prod",
-    "clear": "rm -rf common/dist functions/dist hosting/.next hosting/out",
+    "build:dev": "yarn workspace functions build && yarn workspace hosting build:dev",
+    "build:prod": "yarn workspace functions build:prod && yarn workspace hosting build:prod",
+    "clear": "rm -rf functions/dist hosting/.next hosting/out",
     "serve": "firebase emulators:start --only functions,hosting",
     "deploy": "firebase deploy --only functions,hosting",
-    "lint": "yarn workspace common lint && yarn workspace functions lint && yarn workspace hosting lint",
-    "format": "yarn workspace common format && yarn workspace functions format && yarn workspace hosting format"
+    "lint": "yarn workspace functions lint && yarn workspace hosting lint",
+    "format": "yarn workspace functions format && yarn workspace hosting format"
   }
 }
