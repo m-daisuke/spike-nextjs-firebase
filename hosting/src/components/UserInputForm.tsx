@@ -8,12 +8,12 @@ import {
   InputAdornment,
 } from '@mui/material'
 import { useForm, Controller, Control, FormState } from 'react-hook-form'
-import { UserInputs } from 'common'
-import { Steps } from '../lib/types'
+import { Steps, UserInputs } from '../lib/types'
 
 type CustomInputProps = {
   name: keyof UserInputs
   unit: string
+  type: string
   control: Control<UserInputs, object>
   formState: FormState<UserInputs>
 }
@@ -29,6 +29,7 @@ const CustomInput: FC<CustomInputProps> = (props) => {
         <TextField
           {...field}
           label={field.name}
+          type={props.type}
           fullWidth
           variant="standard"
           error={Boolean(errors[field.name])}
@@ -72,6 +73,7 @@ export const UserInputForm: FC<UserInputFormProps> = (props) => {
             <CustomInput
               name="name"
               unit="単位"
+              type="text"
               control={control}
               formState={formState}
             />
@@ -80,6 +82,7 @@ export const UserInputForm: FC<UserInputFormProps> = (props) => {
             <CustomInput
               name="number1"
               unit="m"
+              type="number"
               control={control}
               formState={formState}
             />
@@ -88,6 +91,7 @@ export const UserInputForm: FC<UserInputFormProps> = (props) => {
             <CustomInput
               name="number2"
               unit="㎡"
+              type="number"
               control={control}
               formState={formState}
             />

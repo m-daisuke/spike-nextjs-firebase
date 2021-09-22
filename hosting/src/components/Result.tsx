@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { Typography, Button, Box } from '@mui/material'
-import { UserInputs } from 'common'
-import { Steps } from '../lib/types'
+import { Steps, UserInputs } from '../lib/types'
 
 type Props = {
   userInputs: UserInputs
