@@ -6,20 +6,26 @@
     "node": "14"
   },
   "scripts": {
-    "dev": "next src/",
-    "build": "next build src/ && next export",
-    "start": "yarn build && serve ./out",
-    "serve": "yarn build && firebase emulators:start --only hosting",
+    "dev": "NODE_ENV=development next src/",
+    "build:dev": "NODE_ENV=development next build src/ && next export",
+    "build:prod": "NODE_ENV=production next build src/ && next export",
+    "start": "yarn build:prod && serve ./out",
+    "serve:": "yarn build:dev && firebase emulators:start --only hosting",
     "lint": "next lint",
     "format": "prettier --write ."
   },
   "dependencies": {
-    "bootstrap": "^5.1.0",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@material-ui/core": "^4.12.3",
+    "@mui/material": "^5.0.0",
+    "bootstrap": "^5.1.1",
     "firebase-functions": "^3.15.6",
     "next": "11.1.2",
     "react": "17.0.2",
-    "react-bootstrap": "^1.6.1",
-    "react-dom": "17.0.2"
+    "react-bootstrap": "^1.6.3",
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.15.4"
   },
   "devDependencies": {
     "@types/react": "17.0.19",

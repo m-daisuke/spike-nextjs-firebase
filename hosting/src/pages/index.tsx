@@ -1,122 +1,102 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { FormEvent, useState } from 'react'
-import { Container, Row, Button, Form, Col } from 'react-bootstrap'
+import { Dispatch, SetStateAction, useState } from 'react'
+import {
+  CssBaseline,
+  AppBar,
+  Container,
+  Toolbar,
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+  Typography,
+  createTheme,
+  ThemeProvider,
+} from '@mui/material'
 import { UserInputs } from 'common'
+import { UserInputForm } from '../components/UserInputForm'
+import { Review } from '../components/Review'
+import { Result } from '../components/Result'
+import { Steps } from '../lib/types'
+
+const steps: Steps[] = ['情報入力', '内容確認', '結果表示'] // indexが若い順に左から表示する
+
+const getStepContent = (
+  step: Steps,
+  userInputs: UserInputs,
+  setUserInputs: Dispatch<SetStateAction<UserInputs>>,
+  setStep: Dispatch<SetStateAction<Steps>>
+) => {
+  switch (step) {
+    case '情報入力':
+      return (
+        <UserInputForm
+          userInputs={userInputs}
+          setUserInputs={setUserInputs}
+          setStep={setStep}
+        />
+      )
+    case '内容確認':
+      return <Review userInputs={userInputs} setStep={setStep} />
+    case '結果表示':
+      return <Result userInputs={userInputs} setStep={setStep} />
+    default:
+      // eslint-disable-next-line no-unused-vars
+      const _exhaustiveCheck: never = step
+  }
+}
+
+const theme = createTheme()
 
 const Home: NextPage = () => {
-  const [validated, setValidated] = useState(false)
-  const [state, setState] = useState<UserInputs>({
+  const [activeStep, setActiveStep] = useState<Steps>('情報入力')
+  const [userInputs, setUserInputs] = useState<UserInputs>({
     name: '',
     number1: '',
     number2: '',
   })
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.id]: event.target.value })
-  }
-
-  const router = useRouter()
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    setValidated(true)
-    event.preventDefault()
-    event.stopPropagation()
-    const form = event.currentTarget
-    if (form.checkValidity()) {
-      const response = await fetch(process.env.API_URL + '/addNumber', {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(state),
-      })
-      const resJson = await response.json()
-      if ('answer' in (await resJson)) {
-        router.push({
-          pathname: '/result',
-          query: { answer: resJson.answer },
-        })
-      }
-    }
-  }
-
   return (
-    <Container className="container">
-      <Head>
-        <title>ReactJS with react-bootstrap</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
-        <Form.Group controlId="name" className="mb-3">
-          <Row className="justify-content-center">
-            <Col md="2">
-              <Form.Label className="m-0 align-middle">名前</Form.Label>
-            </Col>
-            <Col md="6">
-              <Form.Control
-                type="text"
-                placeholder="Enter name"
-                required
-                value={state.name}
-                onChange={handleChange}
-              />
-              <Form.Control.Feedback type="invalid">
-                名前を入力してください
-              </Form.Control.Feedback>
-            </Col>
-          </Row>
-        </Form.Group>
-        <Row className="justify-content-center mb-3">
-          <Col md="4">
-            <Form.Group controlId="number1">
-              <Row>
-                <Col>
-                  <Form.Label>数字1</Form.Label>
-                </Col>
-                <Col>
-                  <Form.Control
-                    type="number"
-                    placeholder="Enter number1"
-                    required
-                    value={state.number1}
-                    onChange={handleChange}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    数字を入力してください
-                  </Form.Control.Feedback>
-                </Col>
-              </Row>
-            </Form.Group>
-          </Col>
-          <Col md="4">
-            <Form.Group controlId="number2">
-              <Row>
-                <Col>
-                  <Form.Label>数字2</Form.Label>
-                </Col>
-                <Col>
-                  <Form.Control
-                    type="number"
-                    placeholder="Enter number2"
-                    required
-                    value={state.number2}
-                    onChange={handleChange}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    数字を入力してください
-                  </Form.Control.Feedback>
-                </Col>
-              </Row>
-            </Form.Group>
-          </Col>
-        </Row>
-        <Button type="submit">送信</Button>
-      </Form>
-    </Container>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppBar
+        position="absolute"
+        color="default"
+        elevation={0}
+        sx={{
+          position: 'relative',
+          borderBottom: (t) => `1px solid ${t.palette.divider}`,
+        }}
+      >
+        <Toolbar>
+          <Typography variant="h6" color="inherit" noWrap>
+            Sample
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+        <Paper
+          variant="outlined"
+          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+        >
+          <Stepper activeStep={steps.indexOf(activeStep)} sx={{ pt: 3, pb: 5 }}>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          <>
+            {getStepContent(
+              activeStep,
+              userInputs,
+              setUserInputs,
+              setActiveStep
+            )}
+          </>
+        </Paper>
+      </Container>
+    </ThemeProvider>
   )
 }
 
