@@ -11,8 +11,8 @@
     "hosting"
   ],
   "scripts": {
-    "build:dev": "yarn workspace common build && yarn workspace functions build && NODE_ENV=development yarn workspace hosting build",
-    "build:prod": "yarn workspace common build && yarn workspace functions build:prod && NODE_ENV=production yarn workspace hosting build",
+    "build:dev": "yarn workspace common build && yarn workspace functions build && yarn workspace hosting build:dev",
+    "build:prod": "yarn workspace common build && yarn workspace functions build:prod && yarn workspace hosting build:prod",
     "clear": "rm -rf common/dist functions/dist hosting/.next hosting/out",
     "serve": "firebase emulators:start --only functions,hosting",
     "deploy": "firebase deploy --only functions,hosting",
