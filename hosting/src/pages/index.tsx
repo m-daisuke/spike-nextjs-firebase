@@ -13,11 +13,10 @@ import {
   createTheme,
   ThemeProvider,
 } from '@mui/material'
-import { UserInputs } from 'common'
 import { UserInputForm } from '../components/UserInputForm'
 import { Review } from '../components/Review'
 import { Result } from '../components/Result'
-import { Steps } from '../lib/types'
+import { Steps, UserInputs } from '../lib/types'
 
 const steps: Steps[] = ['情報入力', '内容確認', '結果表示'] // indexが若い順に左から表示する
 
