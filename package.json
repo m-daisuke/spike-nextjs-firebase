@@ -11,7 +11,7 @@
     "hosting"
   ],
   "scripts": {
-    "build:dev": "yarn workspace functions build && yarn workspace hosting build:dev",
+    "build:dev": "yarn workspace functions build:dev && yarn workspace hosting build:dev",
     "build:prod": "yarn workspace functions build:prod && yarn workspace hosting build:prod",
     "clear": "rm -rf functions/dist hosting/.next hosting/out",
     "serve": "firebase emulators:start --only functions,hosting",

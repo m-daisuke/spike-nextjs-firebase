@@ -7,7 +7,7 @@
   },
   "main": "dist/src/index.js",
   "scripts": {
-    "build": "tsc",
+    "build:dev": "tsc",
     "build:prod": "tsc --project tsconfig.prod.json",
     "watch": "tsc --watch",
     "serve": "yarn build && firebase emulators:start --only functions",
