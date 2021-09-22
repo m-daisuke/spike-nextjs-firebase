@@ -7,8 +7,7 @@ import {
   Box,
   InputAdornment,
 } from '@mui/material'
-import { UserInputs } from 'common'
-import { Steps } from '../lib/types'
+import { Steps, UserInputs } from '../lib/types'
 
 type Props = {
   userInputs: UserInputs
