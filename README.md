@@ -59,4 +59,5 @@ Firebase Hosting で serve する静的ファイルを、 Next.js を利用し�
 
 1. `yarn install`を実行して依存パッケージを install
 1. `yarn build:dev`で functions,hosting 下のファイルをコンパイル
+1. `firebase functions:config:get > functions/.runtimeconfig.json` で Cloud Functions で定義されている環境変数を local に保存
 1. `yarn serve`で Firebase Hosting, Cloud Functions の emulator を立ち上げる
