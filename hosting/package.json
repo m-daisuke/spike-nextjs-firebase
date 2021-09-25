@@ -6,7 +6,7 @@
     "node": "14"
   },
   "scripts": {
-    "dev": "NODE_ENV=development next src/",
+    "next": "NODE_ENV=development next src/",
     "build:dev": "NODE_ENV=development next build src/ && next export",
     "build:prod": "NODE_ENV=production next build src/ && next export",
     "start": "yarn build:prod && serve ./out",
