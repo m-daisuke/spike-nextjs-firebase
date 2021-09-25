@@ -1,5 +1,7 @@
 import * as functions from 'firebase-functions'
 import corsLib from 'cors'
+import { isUserInput } from './lib/util'
+import { writeUserInput } from './lib/firebase'
 
 export const addNumber = functions
   .region('asia-northeast1')
@@ -7,10 +9,11 @@ export const addNumber = functions
     functions.logger.info(`Request received!`)
     const cors = corsLib()
     cors(req, res, () => {
-      if ('number1' in req.body && 'number2' in req.body) {
-        const userInputs = req.body
+      if (isUserInput(req.body)) {
+        const userInput = req.body
+        writeUserInput(userInput)
         try {
-          const answer = Number(userInputs.number1) + Number(userInputs.number2)
+          const answer = Number(userInput.number1) + Number(userInput.number2)
           res.status(200).json({ answer: answer })
           functions.logger.info(`The answer is ${answer}`)
         } catch (e) {

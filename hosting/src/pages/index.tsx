@@ -16,29 +16,29 @@ import {
 import { UserInputForm } from '../components/UserInputForm'
 import { Review } from '../components/Review'
 import { Result } from '../components/Result'
-import { Steps, UserInputs } from '../lib/types'
+import { Steps, UserInput } from '../lib/types'
 
 const steps: Steps[] = ['情報入力', '内容確認', '結果表示'] // indexが若い順に左から表示する
 
 const getStepContent = (
   step: Steps,
-  userInputs: UserInputs,
-  setUserInputs: Dispatch<SetStateAction<UserInputs>>,
+  userInput: UserInput,
+  setUserInput: Dispatch<SetStateAction<UserInput>>,
   setStep: Dispatch<SetStateAction<Steps>>
 ) => {
   switch (step) {
     case '情報入力':
       return (
         <UserInputForm
-          userInputs={userInputs}
-          setUserInputs={setUserInputs}
+          userInput={userInput}
+          setUserInput={setUserInput}
           setStep={setStep}
         />
       )
     case '内容確認':
-      return <Review userInputs={userInputs} setStep={setStep} />
+      return <Review userInput={userInput} setStep={setStep} />
     case '結果表示':
-      return <Result userInputs={userInputs} setStep={setStep} />
+      return <Result userInput={userInput} setStep={setStep} />
     default:
       // eslint-disable-next-line no-unused-vars
       const _exhaustiveCheck: never = step
@@ -49,7 +49,7 @@ const theme = createTheme()
 
 const Home: NextPage = () => {
   const [activeStep, setActiveStep] = useState<Steps>('情報入力')
-  const [userInputs, setUserInputs] = useState<UserInputs>({
+  const [userInput, setUserInput] = useState<UserInput>({
     name: '',
     number1: '',
     number2: '',
@@ -86,12 +86,7 @@ const Home: NextPage = () => {
             ))}
           </Stepper>
           <>
-            {getStepContent(
-              activeStep,
-              userInputs,
-              setUserInputs,
-              setActiveStep
-            )}
+            {getStepContent(activeStep, userInput, setUserInput, setActiveStep)}
           </>
         </Paper>
       </Container>

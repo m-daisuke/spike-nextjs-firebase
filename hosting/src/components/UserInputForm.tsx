@@ -8,14 +8,14 @@ import {
   InputAdornment,
 } from '@mui/material'
 import { useForm, Controller, Control, FormState } from 'react-hook-form'
-import { Steps, UserInputs } from '../lib/types'
+import { Steps, UserInput } from '../lib/types'
 
 type CustomInputProps = {
-  name: keyof UserInputs
+  name: keyof UserInput
   unit: string
   type: string
-  control: Control<UserInputs, object>
-  formState: FormState<UserInputs>
+  control: Control<UserInput, object>
+  formState: FormState<UserInput>
 }
 
 const CustomInput: FC<CustomInputProps> = (props) => {
@@ -46,20 +46,20 @@ const CustomInput: FC<CustomInputProps> = (props) => {
 }
 
 type UserInputFormProps = {
-  userInputs: UserInputs
-  setUserInputs: Dispatch<SetStateAction<UserInputs>>
+  userInput: UserInput
+  setUserInput: Dispatch<SetStateAction<UserInput>>
   setStep: Dispatch<SetStateAction<Steps>>
 }
 
 export const UserInputForm: FC<UserInputFormProps> = (props) => {
-  const { control, handleSubmit, formState } = useForm<UserInputs>({
+  const { control, handleSubmit, formState } = useForm<UserInput>({
     mode: 'onChange',
     reValidateMode: 'onChange',
-    defaultValues: props.userInputs,
+    defaultValues: props.userInput,
   })
 
-  const onSubmit = (data: UserInputs) => {
-    props.setUserInputs({ ...data })
+  const onSubmit = (data: UserInput) => {
+    props.setUserInput({ ...data })
     props.setStep('内容確認')
   }
   return (

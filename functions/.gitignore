@@ -9,3 +9,4 @@ node_modules/
 
 # Firebase
 ui-debug.log
+.runtimeconfig.json
