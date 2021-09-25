@@ -7,15 +7,15 @@ import {
   Box,
   InputAdornment,
 } from '@mui/material'
-import { Steps, UserInputs } from '../lib/types'
+import { Steps, UserInput } from '../lib/types'
 
 type Props = {
-  userInputs: UserInputs
+  userInput: UserInput
   setStep: Dispatch<SetStateAction<Steps>>
 }
 
 export const Review: FC<Props> = (props) => {
-  console.log(props.userInputs)
+  console.log(props.userInput)
   return (
     <>
       <Typography variant="h6" gutterBottom>
@@ -27,7 +27,7 @@ export const Review: FC<Props> = (props) => {
             label="name"
             fullWidth
             variant="standard"
-            value={props.userInputs.name}
+            value={props.userInput.name}
             InputProps={{
               readOnly: true,
               endAdornment: (
@@ -41,7 +41,7 @@ export const Review: FC<Props> = (props) => {
             label="number1"
             fullWidth
             variant="standard"
-            value={props.userInputs.number1}
+            value={props.userInput.number1}
             InputProps={{
               readOnly: true,
               endAdornment: <InputAdornment position="end">m</InputAdornment>,
@@ -53,7 +53,7 @@ export const Review: FC<Props> = (props) => {
             label="number2"
             fullWidth
             variant="standard"
-            value={props.userInputs.number2}
+            value={props.userInput.number2}
             InputProps={{
               readOnly: true,
               endAdornment: <InputAdornment position="end">㎡</InputAdornment>,

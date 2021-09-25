@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from 'react'
 import { Typography, Button, Box } from '@mui/material'
-import { Steps, UserInputs } from '../lib/types'
+import { Steps, UserInput } from '../lib/types'
 
 type Props = {
-  userInputs: UserInputs
+  userInput: UserInput
   setStep: React.Dispatch<React.SetStateAction<Steps>>
 }
 
@@ -17,7 +17,7 @@ export const Result: FC<Props> = (props) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(props.userInputs),
+      body: JSON.stringify(props.userInput),
     })
     const resJson = await response.json()
     console.log(resJson.answer)
